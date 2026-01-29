@@ -62,11 +62,11 @@ def valid_uart(uart):
     return cv.one_of(*uarts, upper=True)(uart)
 
 
-SEL_SCHEMA = select_schema().extend(
+SEL_SCHEMA = select.select_schema().extend(
     {cv.GenerateID(CONF_ID): cv.declare_id(MitsubishiACSelect)}
 )
 
-CONFIG_SCHEMA = climate_schema().extend(
+CONFIG_SCHEMA = climate.climate_schema().extend(
     {
         cv.GenerateID(): cv.declare_id(MitsubishiHeatPump),
         cv.Optional(CONF_HARDWARE_UART, default="UART0"): valid_uart,
